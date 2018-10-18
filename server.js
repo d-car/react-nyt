@@ -12,8 +12,9 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
 // Configure mongoose
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/reactNYT";
 mongoose.Promise = Promise;
-mongoose.connect("herokuLink", {"useMongoClient": true});
+mongoose.connect(MONGODB_URI);
 const db = mongoose.connection;
 
 // db errors/success
@@ -40,9 +41,8 @@ app.use(bodyParser.urlencoded({"extended": true}));
 app.use(methodOverride("_method"));
 
 // Set routers
-const router_api = require(path.join(__dirname, "controllers", "api_routes.js"));
+const router_api = require(path.join(__dirname, "controllers", "api-routes.js"));
 
-// Talk to routers (order matters here)
 app.use("/api", router_api);
 
 // Display the single page app

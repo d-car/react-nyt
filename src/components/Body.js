@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Search from "./Body/Search";
-// import Saved  from "./Body/Saved";
+import Saved  from "./Body/Saved";
 
 class Body extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            "topic"        : "Dogs",
-            "startYear"    : 2018,
-            "endYear"      : 2018,
+            "topic"        : "",
+            "startYear"    : "",
+            "endYear"      : "",
             "articles"     : [],
             "articlesSaved": []
         }
@@ -138,10 +138,10 @@ class Body extends Component {
 
                 <div className="nyt-separator-2" />
 
-                {/* <Saved
+                { <Saved
                     articlesSaved={this.state.articlesSaved}
                     handleUnsave={this.handleUnsave}
-                /> */}
+                /> }
             </div>
         );
     }
