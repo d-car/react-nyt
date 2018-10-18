@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 // Import components
-// import Header from "./components/Header";
+import Header from "./components/Header";
 import Body   from "./components/Body";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 class App extends Component {
     render() {
@@ -12,7 +12,7 @@ class App extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12">
-                            {/* <Header /> */}
+                            <Header />
 
                             <div className="nyt-separator-2" />
 
@@ -23,7 +23,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                {/* <Footer /> */}
+                <Footer />
             </div>
         );
     }

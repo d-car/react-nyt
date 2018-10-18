@@ -10,7 +10,7 @@ const Results = (props) => {
 
             <form onSubmit={props.handleSave}>
                 <input type="hidden" name="id" value={a.id} />
-                <button type="submit" className="btn btn-large waves-light teal lighten-2" title="Click to save this article."><i className="material-icons">add</i></button>
+                <button type="submit" className="btn btn-primary" title="Click to save this article.">add</button>
             </form>
         </div>
     );
@@ -19,7 +19,7 @@ const Results = (props) => {
         <div className="card">
             <div className="card-content">
                 <div className="row">
-                    <div className="col s10 offset-s1">
+                    <div className="col-sm-auto">
                         <h2 className="card-title">Results</h2>
 
                         {results}
