@@ -6,48 +6,50 @@ const Schema = mongoose.Schema;
 
 // Create the schema for Thread
 const articleSchema = new Schema({
-    "id": {
-        "type"    : String,
-        "unique"  : true,
-        "required": true
+    id: {
+        type: String,
+        unique: true,
+        required: true
     },
 
-    "title": {
-        "type"    : String,
-        "required": true
+    title: {
+        type: String,
+        required: true
     },
 
-    "byline": {
-        "type"    : String,
-        "required": true
+    byline: {
+        type: String,
+        required: true
     },
 
-    "summary": {
-        "type"    : String,
-        "required": true
+    summary: {
+        type: String,
+        required: true
     },
 
-    "url": {
-        "type"    : String,
-        "required": true
+    url: {
+        type: String,
+        required: true
     },
 
-    "category": String,
+    category: String,
 
-    "date": {
-        "type"    : Date,
-        "required": true
+    date: {
+        type: Date,
+        required: true
     },
 
-    "keywords": Array,
+    keywords: Array,
 
-    "wordCount": Number,
+    wordCount: Number,
 
-    "dateSaved": {
-        "type"    : Date,
-        "required": true
+    dateSaved: {
+        type: Date,
+        required: true
     }
 });
 
+
+var Article = mongoose.model("Article", articleSchema);
 // Export the Article model
-module.exports = mongoose.model("Article", articleSchema);
+module.exports = Article

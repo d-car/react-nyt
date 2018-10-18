@@ -1,7 +1,7 @@
 import React from "react";
 
 const Saved = (props) => {
-    const articlesSaved = props.articlesSaved.map(a =>
+    const saved = props.saved.map(a =>
         <div className="nyt-results hoverable" key={a.id}>
             <h3><a href={a.url} target="_blank" rel="noopener noreferrer">{a.title}</a></h3>
             <span>{a.byline}</span>
@@ -20,7 +20,7 @@ const Saved = (props) => {
                     <div className="col-sm-12">
                         <h2 className="card-title">Saved Articles</h2>
 
-                        {articlesSaved}
+                        {saved}
                     </div>
                 </div>
             </div>

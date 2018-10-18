@@ -2,33 +2,34 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 const Article = require(path.join(__dirname, "..", "models", "Article.js"));
+const helpers = require("../utils/helpers.js")
 
 
-router.get("/saved", (req, res) => {
+router.get("/api/saved", (req, res) => {
     // Find saved articles
-    Article.find({}, (err, doc) => {
+    Article.find({}, (err, dbArticle) => {
         if (err) throw err;
 
-        res.send(doc);
+        res.json(dbArticle);
         
     });
 });
 
-router.post("/saved", (req, res) => {
-    Article.findOne({"id": req.body.article.id}, (err, doc) => {
+router.post("/api/saved", (req, res) => {
+    Article.findOne({"id": req.body.article.id}, (err, dbArticle) => {
         if (err) throw err;
 
         // Save the article to database if it does not exist yet
-        if (!doc) {
+        if (!dbArticle) {
             // Add a timestamp
             req.body.article.dateSaved = new Date();
             
             const article = new Article(req.body.article);
 
-            article.save((err1, doc1) => {
+            article.save((err1, dbArticle1) => {
                 if (err1) throw err1;
 
-                res.send(doc1);
+                res.json(dbArticle1);
                 
             });
 
@@ -36,15 +37,6 @@ router.post("/saved", (req, res) => {
             res.status(409).send("You already saved this article.");
 
         }
-
-    });
-});
-
-router.delete("/saved", (req, res) => {
-    Article.remove({"id": req.body.id}, (err, doc) => {
-        if (err) throw err;
-
-        res.send(doc);
 
     });
 });

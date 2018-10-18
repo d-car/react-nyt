@@ -12,7 +12,7 @@ class Body extends Component {
             "startYear"    : "",
             "endYear"      : "",
             "articles"     : [],
-            "articlesSaved": []
+            "saved": []
         }
 
         // Methods for Search component
@@ -30,7 +30,7 @@ class Body extends Component {
             .get("/api/saved")
             .then(response => {
                 this.setState({
-                    "articlesSaved": response.data
+                    "saved": response.data
                 });
 
             })
@@ -72,9 +72,11 @@ class Body extends Component {
 
                 this.setState({articles});
 
+                console.log(articles)
+
             })
             .catch(error => {
-                console.error(error);
+                console.log(error);
 
             });
     }
@@ -89,15 +91,15 @@ class Body extends Component {
             .post("/api/saved", {article})
             .then(response => {
                 if (response.status === 200) {
-                    // Add the article to articlesSaved
+                    // Add the article to saved
                     this.setState({
-                        "articlesSaved": [...this.state.articlesSaved, article]
+                        saved: [this.state.saved, article]
                     });
                 }
 
             })
             .catch(error => {
-                console.error(`Error in saving the article:\n${error}`);
+                console.log(`Error in saving the article:\n${error}`);
 
             });
     }
@@ -111,9 +113,9 @@ class Body extends Component {
         axios
             .post("/api/saved?_method=DELETE", {id})
             .then(response => {
-                // Remove the article from articlesSaved
+                // Remove the article from saved
                 this.setState({
-                    "articlesSaved": this.state.articlesSaved.filter(a => a.id !== id)
+                    "saved": this.state.saved.filter(a => a.id !== id)
                 });
 
             })
@@ -139,7 +141,7 @@ class Body extends Component {
                 <div className="nyt-separator-2" />
 
                 { <Saved
-                    articlesSaved={this.state.articlesSaved}
+                    saved={this.state.saved}
                     handleUnsave={this.handleUnsave}
                 /> }
             </div>
