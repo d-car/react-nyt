@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import openSocket from "socket.io-client";
-
 import Search from "./Body/Search";
-import Saved  from "./Body/Saved";
-
-const socket = openSocket("/");
+// import Saved  from "./Body/Saved";
 
 class Body extends Component {
     constructor(props) {
@@ -13,8 +9,8 @@ class Body extends Component {
 
         this.state = {
             "topic"        : "Dogs",
-            "startYear"    : 2017,
-            "endYear"      : 2017,
+            "startYear"    : 2018,
+            "endYear"      : 2018,
             "articles"     : [],
             "articlesSaved": []
         }
@@ -26,11 +22,6 @@ class Body extends Component {
         // Methods for Saved component
         this.handleSave   = this.handleSave.bind(this);
         this.handleUnsave = this.handleUnsave.bind(this);
-        
-        // Listen to broadcasts by other users
-        socket.on("alertEveryoneElse", message => {
-            alert(message);
-        });
     }
 
     componentDidMount() {
@@ -102,9 +93,6 @@ class Body extends Component {
                     this.setState({
                         "articlesSaved": [...this.state.articlesSaved, article]
                     });
-
-                    // Broadcast the update
-                    socket.emit("articleSaved", {"user": "Isaac", "title": article.title});
                 }
 
             })
@@ -150,10 +138,10 @@ class Body extends Component {
 
                 <div className="nyt-separator-2" />
 
-                <Saved
+                {/* <Saved
                     articlesSaved={this.state.articlesSaved}
                     handleUnsave={this.handleUnsave}
-                />
+                /> */}
             </div>
         );
     }
